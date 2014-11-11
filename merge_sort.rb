@@ -1,28 +1,21 @@
-
 def merge_sort(arr)
-  if arr.length == 0 
-  	return arr2
-  else
-  	#arr.each do |element|
-  	if arr.length > 1 
-  	  arr2 = arr[0..arr.length/2-1]
-  	  arr3 = arr[arr.length/2..-1]  	
-
-  	end
-  end  
-
+  return arr if arr.size <= 1
+  arr2 = merge_sort(arr[0, arr.size / 2])
+  arr3 = merge_sort(arr[arr.size / 2, arr.size])
+  merge(arr2, arr3)
 end
 
+def merge(arr1, arr2)
+  sorted = []
+  while arr1.size > 0 && arr2.size > 0
+    sorted << if arr1[0] <= arr2[0]
+      arr1.shift
+    else
+      arr2.shift
+    end
+  end
+  sorted.concat(arr1).concat(arr2)
+end
 
+print merge_sort((1..100).to_a.shuffle)
 
-
-
-
-#puts merge_sort([3,2,1])
-y = [1,2]
-#x = y.each_slice(2).to_a
-#puts x.inspect
-#puts 1.length
-
-puts y.shift
-puts y
